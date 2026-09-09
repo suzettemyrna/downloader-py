@@ -41,11 +41,11 @@ This structure keeps input handling, download logic, task management, and presen
 project/
 │
 ├── src/
+│   ├── downloader.log
+│   ├── links.txt
 │   └── downloader/
 │       ├── main.py
 │       ├── config.py
-│       ├── downloader.log
-│       ├── links.txt
 │       ├── core/
 │       │    ├── downloader.py
 │       │    └── manager.py
