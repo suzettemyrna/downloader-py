@@ -1,25 +1,39 @@
 # Async File Downloader
 
-Asynchronous file downloader built with `asyncio` and `aiohttp`.
+Asynchronous file downloader built with Python,`asyncio` and `aiohttp`.
 
-The project demonstrates:
-
-* concurrent I/O with `asyncio`
-* task orchestration
-* separation of concerns (core / utils / models)
-* CLI + interactive input handling
+The project implements concurrent file downloads with a configurable concurrency limit, task-based orchestration, real-time terminal status updates, and two input modes: command-line arguments and interactive input.
 
 ---
 
 ## Features
 
-* Concurrent downloads (configurable limit)
-* Real-time status updates in console
-* Two input modes (CLI / interactive)
+* Concurrent file downloads with a configurable limit
+* Asynchronous I/O with asyncio and aiohttp
+* Task-based download management
+* Real-time download status updates
+* CLI and interactive input modes
+* Configurable request timeout and concurrency limit
+* Download retry configuration
+* File size limit configuration
 * Basic error handling and logging
-* Task-based architecture (`DownloadTask`)
+* Automatic output filename handling
 
 ---
+
+## How It Works
+
+The downloader separates the download workflow into several components:
+
+1. Input handlers collect the download directory and source URLs.
+2. Each URL is represented as a DownloadTask.
+3. The download manager creates and coordinates asynchronous tasks.
+4. A concurrency limit controls how many files can be downloaded simultaneously.
+5. The downloader performs HTTP requests using aiohttp.
+6. The display component periodically updates the status of active and completed downloads.
+7. The reporter produces the final download results.
+
+This structure keeps input handling, download logic, task management, and presentation separate.
 
 ## Project Structure
 
@@ -50,19 +64,31 @@ project/
 
 ---
 
+## Technologies
+Python 3.12+
+`asyncio`
+`aiohttp`
+`argparse`
+`logging`
+
+---
+
 ## Installation
 
 ### 1. Create virtual environment
 
+On Ubuntu/Debian:
+
 ```bash
 sudo apt install python3.12-venv python3-pip
+```
+Then:
 
+```bash
 cd src/
 python3 -m venv venv
 source venv/bin/activate
 ```
-
----
 
 ### 2. Install dependencies
 
@@ -189,24 +215,14 @@ https://example.com/image2.png
 
 ---
 
-## Current Limitations
+## Possible Improvements
 
-* Files are fully loaded into memory (no streaming yet)
-* No retry mechanism
-* No per-file timeout handling
-* No progress tracking
-* Limited validation of URLs/content
-
----
-
-## Planned Improvements
-
-* Chunked downloading (streaming)
-* Retry logic
-* Progress indicators (size / percentage)
-* File size limits
-* Better error classification
-* Improved CLI UX
+* Stream files in chunks instead of loading the entire response into memory
+* Add detailed progress indicators with downloaded size and percentage
+* Improve error classification and reporting
+* Add more comprehensive URL and response validation
+* Improve CLI interaction and output formatting
+* Add automated tests for core download and task-management logic
 
 ---
 
@@ -217,12 +233,8 @@ https://example.com/image2.png
 
 ---
 
-## Purpose
+## Project Scope
 
-Educational project to explore:
-
-* async programming in Python
-* concurrency control
-* clean architecture
+This project focuses on asynchronous I/O, concurrency control, task orchestration, and separation of responsibilities within a command-line Python application.
 
 ---
