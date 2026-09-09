@@ -65,11 +65,12 @@ project/
 ---
 
 ## Technologies
-Python 3.12+
-`asyncio`
-`aiohttp`
-`argparse`
-`logging`
+
+* Python 3.12+
+* `asyncio`
+* `aiohttp`
+* `argparse`
+* `logging`
 
 ---
 
